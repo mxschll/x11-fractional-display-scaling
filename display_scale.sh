@@ -7,12 +7,12 @@ scale=${1:-1.5}
 echo "Running $(basename $0)"
 
 xdg=$(echo $XDG_SESSION_TYPE)
-if [[ $xdg != "x11" ]]; then
+if [ $xdg != "x11" ]; then
     echo "ERROR: Running $xdg display server rather than x11"
     exit 1
 fi
 
-if ! [[ $scale =~ ^[1-9](\.[0-9]*)?$ ]]; then
+if ! echo "$scale" | awk '/^[1-9](\.[0-9]*)?$/ { exit 0 }; { exit 1 }'; then
     echo "ERROR: Scaling factor must be 1-10"
     exit 1
 fi
