@@ -51,6 +51,8 @@ echo "New panning resolution:     $pan"
 
 if [ "$currentPan" != "$pan" ]; then
     xrandr --output $display --scale $scale --panning $pan
+    echo "xrandr --output $display --scale $scale --panning $pan" > ~/.xprofile
+    chmod +x ~/.xprofile
 else
     echo "Not changing scaling as current and intended resolutions match."
 fi
